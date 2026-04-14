@@ -23,9 +23,9 @@ model User {
   updatedAt   DateTime @updatedAt
 
   // Relations
-  orders      Order[]
-  favorites   Favorite[]
-  cartItems   CartItem[]
+  orders       Order[]
+  favorites    Favorite[]
+  cartItems    CartItem[]
   transactions Transaction[]
 
   @@map("users")
@@ -36,6 +36,7 @@ model Product {
   name        String   // JSON string: { ro: string, en: string }
   description String   // JSON string: { ro: string, en: string }
   price       Float
+  variants    String?  // JSON string: [{ label: string, price: number }]
   images      String   // JSON string: array of image URLs
   imageColor  String
   badge       String?  // JSON string: { ro: string, en: string }
@@ -53,17 +54,17 @@ model Product {
 }
 
 model Order {
-  id          String     @id @default(cuid())
-  userId      String
-  status      String     @default("pending") // pending, processing, shipped, delivered, cancelled
-  totalAmount Float
-  shippingAddress String?   // JSON string: Address object
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id              String     @id @default(cuid())
+  userId          String
+  status          String     @default("pending")
+  totalAmount     Float
+  shippingAddress String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 
   // Relations
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items       OrderItem[]
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items OrderItem[]
 
   @@map("orders")
 }
@@ -73,40 +74,40 @@ model OrderItem {
   orderId   String
   productId String
   quantity  Int
-  price     Float // Price at time of purchase
+  price     Float
 
   // Relations
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("order_items")
 }
 
 model Favorite {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String
   productId String
   createdAt DateTime @default(now())
 
   // Relations
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId])
   @@map("favorites")
 }
 
 model CartItem {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String
   productId String
-  quantity  Int    @default(1)
+  quantity  Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId])
   @@map("cart_items")
@@ -115,13 +116,13 @@ model CartItem {
 model Transaction {
   id          String   @id @default(cuid())
   userId      String
-  type        String   // deposit, withdrawal, purchase
+  type        String
   amount      Float
   description String?
   createdAt   DateTime @default(now())
 
   // Relations
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("transactions")
 }

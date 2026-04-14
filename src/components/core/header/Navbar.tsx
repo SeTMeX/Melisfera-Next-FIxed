@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, LogIn, UserPlus, User } from "lucide-react";
+import { Menu, X, LogIn, UserPlus, User, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import LogInForm from "@/components/core/auth/LogIn";
@@ -101,91 +101,65 @@ export function Navbar() {
                 </Link>
               ))}
 
-              {/* Language switcher */}
-              <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-                <button
-                  onClick={() => i18n.changeLanguage("ro")}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-200 ${
-                    currentLang === "ro"
-                      ? "bg-amber-500 text-white shadow-sm"
-                      : "text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white"
-                  }`}
+              {/* Admin link — doar pentru admin */}
+              {user?.role === "admin" && (
+                <Link
+                  href="/admin"
+                  className="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-300 dark:border-amber-700 hover:bg-amber-500/20 transition-all"
                 >
-                  RO
-                </button>
-                <button
-                  onClick={() => i18n.changeLanguage("en")}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-200 ${
-                    currentLang === "en"
-                      ? "bg-amber-500 text-white shadow-sm"
-                      : "text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white"
-                  }`}
-                >
-                  EN
-                </button>
-              </div>
-
-              {/* Theme toggle */}
-              <ThemeToggle />
-
-              {/* Auth / User */}
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-700">
-                {user ? (
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    onClick={() => router.push("/profil")}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700 hover:bg-amber-50 dark:hover:bg-amber-900/30 transition-all duration-300"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center">
-                      <User size={13} className="text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <span className="max-w-[100px] truncate">
-                      {user.firstName || t("navBar.profile")}
-                    </span>
-                  </motion.button>
-                ) : (
-                  <>
-                    <button
-                      onClick={openLogin}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-gray-700 dark:text-white border border-gray-200 dark:border-gray-600 hover:border-amber-400 hover:text-amber-600 transition-all duration-300"
-                    >
-                      <LogIn size={15} />
-                      {t("navBar.login")}
-                    </button>
-                    <button
-                      onClick={openRegister}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r from-amber-400 to-amber-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-                    >
-                      <UserPlus size={15} />
-                      {t("navBar.register")}
-                    </button>
-                  </>
-                )}
-              </div>
+                  <ShieldCheck size={15} />
+                  Admin
+                </Link>
+              )}
             </nav>
 
-            {/* Mobile */}
-            <div className="md:hidden flex items-center gap-3">
-              {user && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  onClick={() => router.push("/profil")}
-                  className="w-9 h-9 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center border border-amber-200 dark:border-amber-700"
-                >
-                  <User size={17} className="text-amber-600 dark:text-amber-400" />
-                </motion.button>
-              )}
-              <ThemeToggle />
+            {/* Right side */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Language switcher */}
               <button
-                className="p-2 text-gray-700 dark:text-gray-200"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Meniu"
+                onClick={() => i18n.changeLanguage(currentLang === "ro" ? "en" : "ro")}
+                className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600 transition-all"
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {currentLang === "ro" ? "EN" : "RO"}
               </button>
+
+              <ThemeToggle />
+
+              {user ? (
+                <button
+                  onClick={() => router.push("/profil")}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-all text-sm"
+                >
+                  <User size={16} />
+                  {user.firstName || t("navBar.profile")}
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={openLogin}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-gray-700 dark:text-white border border-gray-200 dark:border-gray-600 hover:border-amber-400 hover:text-amber-600 transition-all"
+                  >
+                    <LogIn size={15} />
+                    {t("navBar.login")}
+                  </button>
+                  <button
+                    onClick={openRegister}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-amber-400 to-amber-600 shadow-md hover:shadow-amber-200 dark:hover:shadow-amber-900/40 transition-all"
+                  >
+                    <UserPlus size={15} />
+                    {t("navBar.register")}
+                  </button>
+                </>
+              )}
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
 
@@ -197,25 +171,32 @@ export function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 top-[64px] bg-black/20 z-[-1] md:hidden"
+                className="fixed inset-0 bg-black/40 z-30 md:hidden"
                 onClick={() => setMobileMenuOpen(false)}
               />
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl"
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed top-0 right-0 bottom-0 w-72 bg-white dark:bg-gray-900 z-40 shadow-2xl md:hidden flex flex-col"
               >
-                <nav className="flex flex-col px-4 pt-2 pb-6 space-y-1">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-gray-800">
+                  <span className="font-bold text-amber-600">Melisfera</span>
+                  <button onClick={() => setMobileMenuOpen(false)} className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <nav className="flex flex-col gap-1 px-4 py-4 flex-1 overflow-auto">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                         isActive(link.href)
-                          ? "bg-amber-50 dark:bg-amber-900/30 text-amber-600"
+                          ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
                           : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
                       }`}
                     >
@@ -223,37 +204,26 @@ export function Navbar() {
                     </Link>
                   ))}
 
-                  <div className="flex items-center gap-2 px-1 pt-3">
-                    <button
-                      onClick={() => i18n.changeLanguage("ro")}
-                      className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                        currentLang === "ro"
-                          ? "bg-amber-500 text-white"
-                          : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-300"
-                      }`}
+                  {/* Admin link mobil */}
+                  {user?.role === "admin" && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
                     >
-                      🇷🇴 Română
-                    </button>
-                    <button
-                      onClick={() => i18n.changeLanguage("en")}
-                      className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                        currentLang === "en"
-                          ? "bg-amber-500 text-white"
-                          : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-300"
-                      }`}
-                    >
-                      🇬🇧 English
-                    </button>
-                  </div>
+                      <ShieldCheck size={16} />
+                      Admin Panel
+                    </Link>
+                  )}
 
-                  <div className="px-1 pt-2">
+                  <div className="flex items-center gap-2 mt-2 px-4">
                     <button
-                      onClick={toggleTheme}
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium text-sm transition-colors"
+                      onClick={() => i18n.changeLanguage(currentLang === "ro" ? "en" : "ro")}
+                      className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300"
                     >
-                      <span>{theme === "dark" ? "Temă întunecată" : "Temă luminoasă"}</span>
-                      <ThemeToggle />
+                      {currentLang === "ro" ? "EN" : "RO"}
                     </button>
+                    <ThemeToggle />
                   </div>
 
                   <div className="pt-2 flex flex-col gap-3">
