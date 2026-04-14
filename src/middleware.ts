@@ -10,8 +10,10 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
     try {
-      const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
-      if (payload.role !== "ADMIN") {
+      const payload = JSON.parse(
+        Buffer.from(token.split(".")[1], "base64").toString()
+      );
+      if (payload.role !== "admin") {
         return NextResponse.redirect(new URL("/", request.url));
       }
     } catch {

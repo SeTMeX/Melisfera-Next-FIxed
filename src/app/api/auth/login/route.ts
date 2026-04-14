@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { comparePassword } from "@/lib/password";
-import { signToken } from "@/lib/jwt";
+import { generateToken } from "@/lib/jwt";
 
 export async function POST(req: Request) {
   try {
@@ -12,17 +12,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Credențiale incorecte" }, { status: 401 });
     }
 
-    const token = signToken({ id: user.id, email: user.email, role: user.role });
+    const token = generateToken(user);
 
     const response = NextResponse.json({
-      user: { id: user.id, email: user.email, role: user.role, firstName: user.firstName },
+      success: true,
+      data: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        createdAt: user.createdAt,
+      },
+      accessToken: token,
     });
 
     response.cookies.set("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 30 * 24 * 60 * 60,
       path: "/",
     });
 

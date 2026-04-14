@@ -10,13 +10,19 @@ export async function GET() {
 
     if (!token) return NextResponse.json({ user: null });
 
-    const payload = verifyToken(token) as { id: string; email: string; role: string };
-    const user = await prisma.user.findUnique({ where: { id: payload.id } });
+    const payload = verifyToken(token);
+    const user = await prisma.user.findUnique({ where: { id: payload.sub } });
 
     if (!user) return NextResponse.json({ user: null });
 
     return NextResponse.json({
-      user: { id: user.id, email: user.email, role: user.role, firstName: user.firstName },
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
     });
   } catch {
     return NextResponse.json({ user: null });
