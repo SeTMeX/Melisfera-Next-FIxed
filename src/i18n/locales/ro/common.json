@@ -1,0 +1,236 @@
+{
+  "products": {
+    "salcam": "Miere de salcâm",
+    "tei": "Miere de tei",
+    "flori": "Miere de flori de câmp",
+    "tuica": "Țuică de miere",
+    "cadouri": "Cadouri de miere",
+    "fagure": "Fagure de Miere",
+    "polen": "Polen de Albine",
+    "propolis": "Propolis"
+  },
+  "navBar": {
+    "home": "Home",
+    "products": "Produse",
+    "about": "Despre Noi",
+    "gallery": "Galerie",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Înregistrare"
+  },
+  "homePage": {
+    "badge": "Din inima naturii, direct pe masa ta",
+    "title": "Bine ai venit la",
+    "subtitle": "Miere pură, naturală și delicioasă, extrasă cu pasiune direct din stupii noștri din Călărași.",
+    "buyBtn": "Cumpără Acum",
+    "storyBtn": "Povestea Noastră",
+    "whyTitle": "De ce Melisfera?",
+    "whySubtitle": "Suntem apicultori pasionați care acordă o atenție deosebită calității, sustenabilității și sănătății tale.",
+    "natural": "100% Natural",
+    "naturalDesc": "Fără aditivi, fără conservanți. Doar miere pură, exact cum a creat-o natura.",
+    "sustainable": "Sustenabil",
+    "sustainableDesc": "Practicăm o apicultură responsabilă care respectă albinele și mediul înconjurător.",
+    "quality": "Calitate Certificată",
+    "qualityDesc": "Fiecare lot este testat și aprobat pentru a respecta cele mai înalte standarde de calitate.",
+    "ctaTitle": "Gata să guști miere adevărată?",
+    "ctaSubtitle": "Comandă direct de la stupina noastră și primești acasă.",
+    "ctaBtn": "Cumpără Acum"
+  },
+  "productsPage": {
+    "title": "Produsele Noastre",
+    "subtitle": "Alege din selecția noastră de produse apicole 100% naturale.",
+    "addBtn": "Adaugă",
+    "addedMsg": "adăugat în coș!"
+  },
+  "cart": {
+    "title": "Coșul meu",
+    "noItems": "Niciun produs",
+    "itemCount": "{{count}} produse",
+    "orderProgress": "Progres comandă",
+    "freeShipping": "500 MDL transport gratuit",
+    "emptyTitle": "Coșul este gol",
+    "emptySubtitle": "Adaugă produse din pagina Produse",
+    "viewProducts": "Vezi produse",
+    "subtotal": "Subtotal ({{count}} produse)",
+    "delivery": "Livrare",
+    "freeDelivery": "Gratuit 🎉",
+    "total": "Total",
+    "orderNow": "Comandă acum",
+    "clearCart": "Golește coșul",
+    "paymentMethod": "Metodă de plată",
+    "cashPayment": "Plată Cash",
+    "cardPayment": "Plată Card"
+  },
+  "payment": {
+    "cardTitle": "Plată cu cardul",
+    "cardTotal": "Total",
+    "cardHolder": "Titular card",
+    "fullName": "NUME PRENUME",
+    "expires": "Expiră",
+    "cardNameLabel": "Nume titular",
+    "cardName": "ION POPESCU",
+    "cardNumberLabel": "Număr card",
+    "cardNumber": "Număr card",
+    "month": "Lună",
+    "year": "An",
+    "payNow": "Plătește acum",
+    "processing": "Se procesează...",
+    "secureNote": "Plată securizată prin criptare SSL",
+    "orderTotal": "Total comandă",
+    "currency": "Monedă",
+    "successTitle": "Plată reușită!",
+    "successMsg": "Comanda ta a fost plasată cu succes.",
+    "errors": {
+      "name": "Introduceți numele complet",
+      "number": "Numărul cardului trebuie să aibă 16 cifre",
+      "expiry": "Data de expirare este invalidă",
+      "cvv": "CVV-ul trebuie să aibă minim 3 cifre"
+    },
+    "months": {
+      "jan": "Ian",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "Mai",
+      "jun": "Iun",
+      "jul": "Iul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  },
+  "about": {
+    "badge": "Povestea Noastră",
+    "heroTitle": "Miere Pură din",
+    "heroHighlight": "Inima Moldovei",
+    "heroSubtitle": "De peste 15 ani cultivăm albinele cu dragoste și dăruință în dealurile din Călărași, Moldova.",
+    "floatingCard": {
+      "title": "Miere Moldovenească Pură",
+      "subtitle": "Direct din stupinele noastre"
+    },
+    "floatingBadge": "Ani de Experiență",
+    "storyLabel": "Istoria Noastră",
+    "storyTitle": "O Familie Născută din Dragostea pentru Albine",
+    "storyQuote": "Fiecare borcan de miere conține munca a mii de albine și dragostea familiei noastre.",
+    "storyBody1": "Melisfera a luat naștere în 2009, din inițiativa unei familii de entuziaști apicoli din Călărași, Moldova. Ce a început ca o mică pasiune cu câțiva stupi s-a transformat treptat într-o stupină prosperă cu peste 80 de familii de albine.",
+    "storyBody2": "Credem că mierea adevărată trebuie să fie pură, naturală și plină de aromă. De aceea nu ne grăbim niciodată — lăsăm natura să-și urmeze cursul și recoltăm doar la momentul optim.",
+    "valuesLabel": "Valorile Noastre",
+    "valuesTitle": "Ce Face Mierea Noastră Specială",
+    "values": {
+      "natural": {
+        "title": "100% Natural",
+        "desc": "Fără aditivi, fără conservanți, fără încălzire peste 40°C. Miere pură exact cum a creat-o natura."
+      },
+      "sustainable": {
+        "title": "Apicultură Sustenabilă",
+        "desc": "Ne îngrijim de albine ca de membrii familiei, practicând metode responsabile care protejează ecosistemul."
+      },
+      "quality": {
+        "title": "Calitate Garantată",
+        "desc": "Fiecare lot este extras cu grijă, filtrat și testat pentru a respecta cele mai înalte standarde de calitate."
+      }
+    },
+    "natureTitle": "Din Natura Curată a Moldovei",
+    "natureSubtitle": "Albinele noastre se hrănesc din flori de câmp, tei și salcâm din dealurile din Călărași.",
+    "nature": {
+      "wildflowers": {
+        "title": "Flori de Câmp",
+        "desc": "Flori sezoniere"
+      },
+      "hills": {
+        "title": "Dealuri Verzi",
+        "desc": "Mediu curat"
+      },
+      "pure": {
+        "title": "Aer Curat",
+        "desc": "Fără poluare"
+      },
+      "passion": {
+        "title": "Făcut cu Dragoste",
+        "desc": "Tradiție de familie"
+      }
+    },
+    "quote": "Albinele nu mint. Mierea reflectă sufletul pământului în care s-a născut.",
+    "quoteAuthor": "Familia Melisfera",
+    "numbersLabel": "În Cifre",
+    "numbersTitle": "15 Ani de Pasiune și Dăruință",
+    "stats": {
+      "years": "Ani de activitate",
+      "clients": "Clienți mulțumiți",
+      "natural": "Natural",
+      "products": "Sortimente de miere"
+    }
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "subtitle": "Ai întrebări sau vrei să plasezi o comandă specială? Suntem aici.",
+    "successMsg": "Mesaj trimis cu succes! Vă vom contacta în scurt timp.",
+    "infoTitle": "Informații de Contact",
+    "address": "Adresa",
+    "phone": "Telefon",
+    "email": "Email",
+    "name": "Nume Complet",
+    "emailLabel": "Email",
+    "subject": "Subiect",
+    "subjectPlaceholder": "Comandă sau Întrebare",
+    "message": "Mesaj",
+    "messagePlaceholder": "Scrie mesajul tău aici...",
+    "sending": "Se trimite...",
+    "sendBtn": "Trimite Mesajul"
+  },
+  "gallery": {
+    "title": "Galeria Noastră",
+    "subtitle": "Imagini din inima stupinei noastre, procesul de extracție și produsele finale."
+  },
+  "UserProfile": {
+  "profile": "Profilul Meu",
+  "order": "Istoricul Comenzilor",
+  "wishlist": "Lista de Dorințe",
+  "wallet": "Portofelul Meu",
+  "logOut": "Deconectare",
+  "delete": "Șterge Contul",
+  "personalData": "Date Personale",
+  "orders": "Comenzi",
+  "sales": "Vânzări",
+  "personalInfo": "Informații Personale",
+  "fullName": "Nume Complet",
+  "phone": "Telefon",
+  "member": "Abonament",
+  "email": "Email",
+  "memberSince": "Membru din",
+  "id": "ID Client",
+  "notAuthenticated": "Trebuie să fii autentificat",
+"backHome": "Înapoi Acasă",
+"availableBalance": "Sold disponibil",
+"noOrders": "Nicio comandă încă",
+"noOrdersDesc": "Când plasezi o comandă, o vei găsi aici.",
+"discoverProducts": "Descoperă produsele",
+"emptyWishlist": "Lista de dorințe e goală",
+"emptyWishlistDesc": "Apasă inima de pe un produs pentru a-l salva aici.",
+"exploreProducts": "Explorează produsele",
+"noTransactions": "Nicio tranzacție",
+"noTransactionsDesc": "Istoricul tranzacțiilor va apărea aici.",
+"editProfile": "Editează Profilul",
+"firstName": "Prenume",
+"lastName": "Nume",
+"saveChanges": "Salvează modificările",
+"saving": "Se salvează...",
+"deleteTitle": "Șterge Contul",
+"deleteWarning": "Această acțiune este <strong>ireversibilă</strong>. Toate datele tale vor fi șterse permanent.",
+"cancel": "Anulează",
+"confirmDelete": "Da, șterge",
+"deleting": "Se șterge..."
+},
+"footer": {
+  "desc": "Miere naturală din inima Moldovei, recoltată cu grijă din stupii noștri din Călărași.",
+  "info": "Informații",
+  "products": "Produse",
+  "about": "Despre Noi",
+  "terms": "Termeni și Condiții",
+  "privacy": "Politica de Confidențialitate",
+  "contact": "Contact",
+  "rights": "Toate drepturile rezervate."
+}
+}

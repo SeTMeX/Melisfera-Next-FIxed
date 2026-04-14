@@ -1,0 +1,236 @@
+{
+  "products": {
+    "salcam": "Acacia Honey",
+    "tei": "Linden Honey",
+    "flori": "Wildflower Honey",
+    "tuica": "Honey Brandy",
+    "cadouri": "Honey Gift Sets",
+    "fagure": "Honeycomb",
+    "polen": "Bee Pollen",
+    "propolis": "Propolis"
+  },
+  "navBar": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Sign Up"
+  },
+  "homePage": {
+    "badge": "From the heart of nature, straight to your table",
+    "title": "Welcome to",
+    "subtitle": "Pure, natural and delicious honey from our hives in Călărași.",
+    "buyBtn": "Buy Now",
+    "storyBtn": "Our Story",
+    "whyTitle": "Why Melisfera?",
+    "whySubtitle": "We are passionate beekeepers who care about quality, sustainability and your health.",
+    "natural": "100% Natural",
+    "naturalDesc": "No additives, no preservatives. Just pure honey as nature intended.",
+    "sustainable": "Sustainable",
+    "sustainableDesc": "We practice responsible beekeeping that respects bees and the environment.",
+    "quality": "Certified Quality",
+    "qualityDesc": "Every batch is tested and approved to meet the highest quality standards.",
+    "ctaTitle": "Ready to taste real honey?",
+    "ctaSubtitle": "Order directly from our apiary and get it delivered to your door.",
+    "ctaBtn": "Shop Now"
+  },
+  "productsPage": {
+    "title": "Our Products",
+    "subtitle": "Choose from our selection of 100% natural bee products.",
+    "addBtn": "Add",
+    "addedMsg": "added to cart!"
+  },
+  "cart": {
+    "title": "My Cart",
+    "noItems": "No items",
+    "itemCount": "{{count}} items",
+    "orderProgress": "Order progress",
+    "freeShipping": "500 MDL free shipping",
+    "emptyTitle": "Your cart is empty",
+    "emptySubtitle": "Add products from the Products page",
+    "viewProducts": "View products",
+    "subtotal": "Subtotal ({{count}} items)",
+    "delivery": "Delivery",
+    "freeDelivery": "Free 🎉",
+    "total": "Total",
+    "orderNow": "Order now",
+    "clearCart": "Clear cart",
+    "paymentMethod": "Payment method",
+    "cashPayment": "Cash Payment",
+    "cardPayment": "Card Payment"
+  },
+  "payment": {
+    "cardTitle": "Card Payment",
+    "cardTotal": "Total",
+    "cardHolder": "Card Holder",
+    "fullName": "FULL NAME",
+    "expires": "Expires",
+    "cardNameLabel": "Cardholder name",
+    "cardName": "JOHN DOE",
+    "cardNumberLabel": "Card number",
+    "cardNumber": "Card number",
+    "month": "Month",
+    "year": "Year",
+    "payNow": "Pay now",
+    "processing": "Processing...",
+    "secureNote": "Secured by SSL encryption",
+    "orderTotal": "Order total",
+    "currency": "Currency",
+    "successTitle": "Payment successful!",
+    "successMsg": "Your order has been placed successfully.",
+    "errors": {
+      "name": "Please enter your full name",
+      "number": "Card number must be 16 digits",
+      "expiry": "Expiry date is invalid",
+      "cvv": "CVV must be at least 3 digits"
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  },
+  "about": {
+    "badge": "Our Story",
+    "heroTitle": "Pure Honey from",
+    "heroHighlight": "Moldova's Heart",
+    "heroSubtitle": "For over 15 years, we have been cultivating bees with love and dedication in the hills of Călărași, Moldova.",
+    "floatingCard": {
+      "title": "Pure Moldovan Honey",
+      "subtitle": "Directly from our hives"
+    },
+    "floatingBadge": "Years of Experience",
+    "storyLabel": "Our History",
+    "storyTitle": "A Family Born from Passion for Bees",
+    "storyQuote": "Every jar of honey contains the work of thousands of bees and the love of our family.",
+    "storyBody1": "Melisfera was founded in 2009 by a family of beekeeping enthusiasts from Călărași, Moldova. What started as a small hobby with just a few hives has grown into a thriving apiary of over 80 hives.",
+    "storyBody2": "We believe that true honey must be pure, natural and full of flavor. That's why we never rush the process — we let nature take its course and harvest only at the perfect moment.",
+    "valuesLabel": "Our Values",
+    "valuesTitle": "What Makes Our Honey Special",
+    "values": {
+      "natural": {
+        "title": "100% Natural",
+        "desc": "No additives, no preservatives, no heating above 40°C. Just pure honey as nature made it."
+      },
+      "sustainable": {
+        "title": "Sustainable Beekeeping",
+        "desc": "We care for our bees as family members, practicing responsible methods that protect the ecosystem."
+      },
+      "quality": {
+        "title": "Guaranteed Quality",
+        "desc": "Each batch is carefully extracted, filtered and tested to meet the highest quality standards."
+      }
+    },
+    "natureTitle": "From Moldova's Pristine Nature",
+    "natureSubtitle": "Our bees feed on wildflowers, linden trees and acacia blossoms from the hills of Călărași.",
+    "nature": {
+      "wildflowers": {
+        "title": "Wildflowers",
+        "desc": "Seasonal blooms"
+      },
+      "hills": {
+        "title": "Rolling Hills",
+        "desc": "Pure environment"
+      },
+      "pure": {
+        "title": "Clean Air",
+        "desc": "No pollution"
+      },
+      "passion": {
+        "title": "Made with Love",
+        "desc": "Family tradition"
+      }
+    },
+    "quote": "The bees do not deceive. The honey reflects the soul of the land where it was born.",
+    "quoteAuthor": "Melisfera Family",
+    "numbersLabel": "In Numbers",
+    "numbersTitle": "15 Years of Passion and Dedication",
+    "stats": {
+      "years": "Years active",
+      "clients": "Happy clients",
+      "natural": "Natural",
+      "products": "Honey varieties"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions or want to place a special order? We are here for you.",
+    "successMsg": "Message sent successfully! We will contact you shortly.",
+    "infoTitle": "Contact Information",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "name": "Full Name",
+    "emailLabel": "Email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Order or Inquiry",
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "sending": "Sending...",
+    "sendBtn": "Send Message"
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "subtitle": "Images from the heart of our apiary, the extraction process and the final products."
+  },
+  "UserProfile": {
+  "profile": "My Profile",
+  "order": "Order History",
+  "wishlist": "My Wishlist",
+  "wallet": "My Wallet",
+  "logOut": "Log Out",
+  "delete": "Delete Account",
+  "personalData": "Personal Data",
+  "orders": "Orders",
+  "sales": "Sales",
+  "personalInfo": "Personal Information",
+  "fullName": "Full Name",
+  "phone": "Phone",
+  "member": "Membership",
+  "email": "Email",
+  "memberSince": "Member since",
+  "id": "Customer ID",
+  "notAuthenticated": "You must be logged in",
+"backHome": "Back Home",
+"availableBalance": "Available balance",
+"noOrders": "No orders yet",
+"noOrdersDesc": "When you place an order, you'll find it here.",
+"discoverProducts": "Discover products",
+"emptyWishlist": "Wishlist is empty",
+"emptyWishlistDesc": "Tap the heart on a product to save it here.",
+"exploreProducts": "Explore products",
+"noTransactions": "No transactions",
+"noTransactionsDesc": "Your transaction history will appear here.",
+"editProfile": "Edit Profile",
+"firstName": "First Name",
+"lastName": "Last Name",
+"saveChanges": "Save changes",
+"saving": "Saving...",
+"deleteTitle": "Delete Account",
+"deleteWarning": "This action is <strong>irreversible</strong>. All your data will be permanently deleted.",
+"cancel": "Cancel",
+"confirmDelete": "Yes, delete",
+"deleting": "Deleting..."
+},
+"footer": {
+  "desc": "Natural honey from the heart of Moldova, carefully harvested from our hives in Călărași.",
+  "info": "Information",
+  "products": "Products",
+  "about": "About Us",
+  "terms": "Terms & Conditions",
+  "privacy": "Privacy Policy",
+  "contact": "Contact",
+  "rights": "All rights reserved."
+}
+}
