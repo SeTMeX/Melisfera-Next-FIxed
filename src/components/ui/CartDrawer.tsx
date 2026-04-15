@@ -203,7 +203,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         )}
       </AnimatePresence>
 
-      <CardPaymentModal open={cardModalOpen} onClose={() => setCardModalOpen(false)} />
+ <CardPaymentModal open={cardModalOpen} onClose={() => setCardModalOpen(false)} total={finalTotal} />
       <CashCheckoutModal
         open={cashModalOpen}
         onClose={() => setCashModalOpen(false)}
