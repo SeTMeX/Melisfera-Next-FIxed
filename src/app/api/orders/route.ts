@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
 
     const orders = await prisma.order.findMany({
-      where: { userId: decoded.id },
+      where: { userId: decoded.sub },
       include: {
         items: {
           include: {
@@ -119,10 +119,10 @@ export async function POST(request: NextRequest) {
     const order = await prisma.$transaction(async (tx) => {
       const newOrder = await tx.order.create({
         data: {
-          userId: decoded.id,
+          userId: decoded.sub,
           status: 'pending',
           totalAmount,
-          shippingAddress: validatedData.shippingAddress
+          shippingAddress: JSON.stringify(validatedData.shippingAddress)
         }
       })
 
@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
       // Clear cart
       await tx.cartItem.deleteMany({
         where: {
-          userId: decoded.id,
+          userId: decoded.sub,
           productId: { in: validatedData.items.map(item => item.productId) }
         }
       })

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
 
     const favorites = await prisma.favorite.findMany({
-      where: { userId: decoded.id },
+      where: { userId: decoded.sub },
       include: {
         product: true
       },
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     const existingFavorite = await prisma.favorite.findUnique({
       where: {
         userId_productId: {
-          userId: decoded.id,
+          userId: decoded.sub,
           productId
         }
       }
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
 
     const favorite = await prisma.favorite.create({
       data: {
-        userId: decoded.id,
+        userId: decoded.sub,
         productId
       }
     })

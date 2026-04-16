@@ -3,8 +3,9 @@ import { prisma } from '@/lib/prisma'
 import { verifyToken } from '@/lib/jwt'
 
 // DELETE remove from cart
-export async function DELETE(request: NextRequest, { params }: { params: { productId: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ productId: string }> }) {
   try {
+    const { productId } = await params
     const token = request.cookies.get('token')?.value || request.headers.get('authorization')?.replace('Bearer ', '')
 
     if (!token) {
@@ -16,8 +17,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { produ
     await prisma.cartItem.delete({
       where: {
         userId_productId: {
-          userId: decoded.id,
-          productId: params.productId
+          userId: decoded.sub,
+          productId: productId
         }
       }
     })

@@ -66,8 +66,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const validatedData = createProductSchema.parse(body)
 
+    // Convert object fields to JSON strings for Prisma
+    const createData = {
+      name: JSON.stringify(validatedData.name),
+      description: JSON.stringify(validatedData.description),
+      price: validatedData.price,
+      images: JSON.stringify(validatedData.images),
+      imageColor: validatedData.imageColor,
+      badge: validatedData.badge ? JSON.stringify(validatedData.badge) : null,
+      details: JSON.stringify(validatedData.details),
+      inStock: validatedData.inStock
+    }
+
     const product = await prisma.product.create({
-      data: validatedData
+      data: createData
     })
 
     return NextResponse.json(product, { status: 201 })

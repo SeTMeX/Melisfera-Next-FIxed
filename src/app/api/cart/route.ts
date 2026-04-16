@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
 
     const cartItems = await prisma.cartItem.findMany({
-      where: { userId: decoded.id },
+      where: { userId: decoded.sub },
       include: {
         product: true
       },
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     const cartItem = await prisma.cartItem.upsert({
       where: {
         userId_productId: {
-          userId: decoded.id,
+          userId: decoded.sub,
           productId
         }
       },
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
         quantity
       },
       create: {
-        userId: decoded.id,
+        userId: decoded.sub,
         productId,
         quantity
       },

@@ -49,8 +49,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 }
 
 // PUT update product (admin only)
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params
     const token = request.cookies.get('token')?.value || request.headers.get('authorization')?.replace('Bearer ', '')
 
     if (!token) {
@@ -65,9 +66,19 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const body = await request.json()
     const validatedData = updateProductSchema.parse(body)
 
+    // Convert object fields to JSON strings for Prisma
+    const updateData = {
+      ...validatedData,
+      name: validatedData.name ? JSON.stringify(validatedData.name) : undefined,
+      description: validatedData.description ? JSON.stringify(validatedData.description) : undefined,
+      images: validatedData.images ? JSON.stringify(validatedData.images) : undefined,
+      badge: validatedData.badge ? JSON.stringify(validatedData.badge) : undefined,
+      details: validatedData.details ? JSON.stringify(validatedData.details) : undefined,
+    }
+
     const product = await prisma.product.update({
       where: { id },
-      data: validatedData
+      data: updateData
     })
 
     return NextResponse.json(product)
@@ -139,17 +150,12 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     })
   } catch (error) {
     console.error('Delete product error:', error)
-    console.error('Error details:', {
-      message: error.message,
-      stack: error.stack,
-      name: error.name,
-      code: error.code
-    });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     
     return NextResponse.json(
       { 
         error: 'Internal server error',
-        details: error.message,
+        details: errorMessage,
         timestamp: new Date().toISOString()
       },
       { status: 500 }
