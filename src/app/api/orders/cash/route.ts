@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { phone, address, items, total } = await req.json();
@@ -12,18 +19,18 @@ export async function POST(req: NextRequest) {
     }
 
     const itemsList = items
-      .map((i: any) => `• ${i.name} ×${i.quantity} — ${i.price}`)
+      .map((i: any) => `• ${escapeHtml(i.name)} ×${i.quantity} — ${escapeHtml(String(i.price))}`)
       .join("\n");
 
     const message = [
-      "🍯 *COMANDĂ NOUĂ — Melisfera*",
+      "🍯 <b>COMANDĂ NOUĂ — Melisfera</b>",
       "",
-      "📦 *Produse:*",
+      "📦 <b>Produse:</b>",
       itemsList,
       "",
-      `💰 *Total: ${total} MDL*`,
-      `📞 *Telefon:* ${phone}`,
-      `📍 *Adresă:* ${address}`,
+      `💰 <b>Total: ${escapeHtml(String(total))} MDL</b>`,
+      `📞 <b>Telefon:</b> ${escapeHtml(phone)}`,
+      `📍 <b>Adresă:</b> ${escapeHtml(address)}`,
       "",
       `⏰ ${new Date().toLocaleString("ro-RO", { timeZone: "Europe/Chisinau" })}`,
     ].join("\n");
@@ -36,7 +43,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
-          parse_mode: "Markdown",
+          parse_mode: "HTML",
         }),
       }
     );
@@ -44,7 +51,7 @@ export async function POST(req: NextRequest) {
     const data = await res.json();
     if (!data.ok) {
       console.error("Telegram error:", data);
-      return NextResponse.json({ error: "Telegram error" }, { status: 500 });
+      return NextResponse.json({ error: "Telegram error", detail: data }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
