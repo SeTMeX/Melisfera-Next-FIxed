@@ -9,7 +9,7 @@ interface ProductFormData {
   name: { ro: string; en: string };
   description: { ro: string; en: string };
   price: number;
-  images: string;
+  images: string[];
   imageColor: string;
   badge?: { ro: string; en: string };
   details: { ro: string[]; en: string[] };
@@ -52,7 +52,7 @@ export const ProductManager = () => {
     try {
       const submissionData = {
         ...formData,
-        images: formData.images.split(',').map(url => url.trim()).filter(url => url)
+        images: formData.images
       };
 
       if (editingProduct) {
@@ -69,7 +69,7 @@ export const ProductManager = () => {
         name: { ro: "", en: "" },
         description: { ro: "", en: "" },
         price: 0,
-        images: "",
+        images: [],
         imageColor: "",
         details: { ro: [], en: [] },
         inStock: true

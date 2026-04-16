@@ -14,14 +14,17 @@ interface CartStore {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">) => void;
   removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
   increaseQty: (id: string) => void;
   decreaseQty: (id: string) => void;
   clearCart: () => void;
+  getTotalPrice: () => number;
+  getTotalItems: () => number;
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: [],
 
       addItem: (item) =>
@@ -40,6 +43,13 @@ export const useCartStore = create<CartStore>()(
       removeItem: (id) =>
         set((state) => ({
           items: state.items.filter((i) => i.id !== id),
+        })),
+
+      updateQuantity: (id, quantity) =>
+        set((state) => ({
+          items: state.items.map((i) =>
+            i.id === id ? { ...i, quantity } : i
+          ),
         })),
 
       increaseQty: (id) =>
@@ -64,6 +74,19 @@ export const useCartStore = create<CartStore>()(
         }),
 
       clearCart: () => set({ items: [] }),
+
+      getTotalPrice: () => {
+        const state = get();
+        return state.items.reduce((total: number, item: CartItem) => {
+          const price = parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
+          return total + price * item.quantity;
+        }, 0);
+      },
+
+      getTotalItems: () => {
+        const state = get();
+        return state.items.reduce((total: number, item: CartItem) => total + item.quantity, 0);
+      },
     }),
     { name: "melisfera-cart" }
   )

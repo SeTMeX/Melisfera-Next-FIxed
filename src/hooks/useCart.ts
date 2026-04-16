@@ -40,11 +40,10 @@ export const useCart = () => {
         transformedItems.forEach((item: CartItem) => {
           addItem({
             id: item.product.id,
-            name: item.product.name,
+            name: item.product.name.ro || item.product.name.en || '',
             image: item.product.images[0],
             imageColor: item.product.imageColor,
-            price: item.product.price,
-            quantity: item.quantity
+            price: item.product.price
           });
         });
       } catch (error) {
@@ -66,11 +65,10 @@ export const useCart = () => {
       await apiClient.addToCart(product.id, quantity);
       addItem({
         id: product.id,
-        name: product.name,
+        name: product.name.ro || product.name.en || '',
         image: product.image,
         imageColor: product.imageColor,
-        price: product.price,
-        quantity
+        price: product.price
       });
       
       const productName = product.name.ro || product.name.en;

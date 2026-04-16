@@ -158,8 +158,20 @@ async function main() {
   const existingProducts = await prisma.product.count()
   if (existingProducts === 0) {
     for (const productData of products) {
+      // Convert object fields to JSON strings for Prisma
+      const createData = {
+        name: JSON.stringify(productData.name),
+        description: JSON.stringify(productData.description),
+        price: productData.price,
+        images: productData.images,
+        imageColor: productData.imageColor,
+        badge: productData.badge,
+        details: productData.details,
+        inStock: productData.inStock
+      }
+      
       const product = await prisma.product.create({
-        data: productData
+        data: createData
       })
       console.log('Created product:', product.id)
     }
