@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
 
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
+      where: { id: decoded.sub },
       select: {
         id: true,
         email: true,
@@ -61,7 +61,7 @@ export async function PATCH(request: NextRequest) {
     const validatedData = updateProfileSchema.parse(body)
 
     const updatedUser = await prisma.user.update({
-      where: { id: decoded.id },
+      where: { id: decoded.sub },
       data: validatedData,
       select: {
         id: true,
@@ -105,7 +105,7 @@ export async function DELETE(request: NextRequest) {
     const decoded = verifyToken(token)
 
     await prisma.user.delete({
-      where: { id: decoded.id }
+      where: { id: decoded.sub }
     })
 
     const response = NextResponse.json({ message: 'Account deleted successfully' })

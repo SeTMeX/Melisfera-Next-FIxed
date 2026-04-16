@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const decoded = verifyToken(token)
 
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
+      where: { id: decoded.sub },
       select: {
         balance: true
       }
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     }
 
     const transactions = await prisma.transaction.findMany({
-      where: { userId: decoded.id },
+      where: { userId: decoded.sub },
       orderBy: { createdAt: 'desc' },
       take: 50 // Limit to last 50 transactions
     })
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     // Update user balance and create transaction
     const result = await prisma.$transaction(async (tx) => {
       const updatedUser = await tx.user.update({
-        where: { id: decoded.id },
+        where: { id: decoded.sub },
         data: {
           balance: {
             increment: validatedData.amount
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
 
       const transaction = await tx.transaction.create({
         data: {
-          userId: decoded.id,
+          userId: decoded.sub,
           type: 'deposit',
           amount: validatedData.amount,
           description: validatedData.description || `Added ${validatedData.amount} MDL to wallet`

@@ -7,6 +7,11 @@ interface User {
   email: string;
   role: string;
   firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  balance?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface UseUserReturn {
