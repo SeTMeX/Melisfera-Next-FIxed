@@ -40,7 +40,6 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               onClick={onClose}
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
             />
-
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -52,7 +51,6 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               <div className="relative px-4 sm:px-6 pt-5 pb-4 overflow-hidden bg-gradient-to-br from-amber-400 via-amber-400 to-amber-500 shrink-0">
                 <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
                 <div className="absolute bottom-0 left-0 w-48 h-20 bg-white/5 blur-xl" />
-
                 <div className="relative z-10 flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2.5 mb-1">
@@ -72,7 +70,6 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                     <X size={18} />
                   </button>
                 </div>
-
                 {items.length > 0 && (
                   <div className="relative z-10 mt-4">
                     <div className="flex justify-between text-xs text-amber-100 mb-1.5">
@@ -203,7 +200,11 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         )}
       </AnimatePresence>
 
- <CardPaymentModal open={cardModalOpen} onClose={() => setCardModalOpen(false)} total={finalTotal} />
+      <CardPaymentModal
+        open={cardModalOpen}
+        onClose={() => setCardModalOpen(false)}
+        total={finalTotal}
+      />
       <CashCheckoutModal
         open={cashModalOpen}
         onClose={() => setCashModalOpen(false)}
