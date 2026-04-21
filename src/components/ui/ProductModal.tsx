@@ -47,12 +47,12 @@ const VARIANTS: Record<string, Variant[]> = {
     {
       label: "1 kg",
       price: "130 MDL",
-      images: ["/photos/tei1kg02.jpeg", "/photos/tei1kg02.png", "/photos/tei1kg03.jpeg"],
+      images: ["/photos/tei1kg02.png", "/photos/tei1kg03.jpeg", "/photos/tei1kg02.jpeg"],
     },
     {
       label: "5 kg",
       price: "500 MDL",
-      images: ["/photos/tei5kg01.jpeg"],
+      images: ["/photos/tei5kg01.jpeg", "/photos/tei5kg02.jpeg", "/photos/tei5kg03.jpeg"],
     },
   ],
   camp: [
@@ -115,7 +115,6 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
   const variants = product ? getVariants(product) : null;
   const displayPrice = selectedVariant?.price ?? product?.price ?? "";
 
-  // Imaginile afișate: cele ale variantei selectate (dacă există), altfel imaginile produsului
   const displayImages =
     selectedVariant?.images && selectedVariant.images.length > 0
       ? selectedVariant.images
@@ -131,7 +130,6 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
     }
   }, [product?.id]);
 
-  // Resetează imaginea activă când se schimbă varianta
   const handleSelectVariant = (v: Variant) => {
     setSelectedVariant(v);
     setActiveImg(0);

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "@/stores/cartStore";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { toast } from "sonner";
 import { CardPaymentModal } from "./CardPaymentModal";
 import { CashCheckoutModal } from "./CashCheckoutModal";
 
@@ -179,7 +180,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 
                     <motion.button
                       whileTap={{ scale: 0.96 }}
-                      onClick={() => setCardModalOpen(true)}
+                      onClick={() => toast.info("Această metodă de plată nu este disponibilă încă")}
                       className="flex flex-col items-center gap-1.5 py-3.5 sm:py-4 rounded-2xl font-semibold text-sm bg-gray-100 text-gray-800 border border-gray-200 shadow-md dark:bg-slate-800 dark:text-white dark:border-slate-700 hover:bg-gray-200 dark:hover:bg-slate-700 active:scale-95 transition-all"
                     >
                       <CreditCard size={20} />

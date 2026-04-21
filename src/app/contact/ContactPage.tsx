@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +7,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Send, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Numele este prea scurt"),
@@ -27,13 +27,29 @@ export function ContactPage() {
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSent(true);
-    reset();
-    setTimeout(() => setSent(false), 4000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        toast.error("Nu s-a putut trimite mesajul. Încearcă din nou.");
+        return;
+      }
+      toast.success("Mesajul a fost trimis cu succes! 🍯");
+      setSent(true);
+      reset();
+      setTimeout(() => setSent(false), 4000);
+    } catch (err) {
+      console.error(err);
+      toast.error("Eroare de rețea. Încearcă din nou.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,9 +93,9 @@ export function ContactPage() {
               </h3>
               <ul className="space-y-5 sm:space-y-6">
                 {[
-                  { icon: MapPin, title: t("contact.address"), text: "Raionul Călărași,\nRepublica Moldova" },
-                  { icon: Phone, title: t("contact.phone"), text: "+373 69 000 000" },
-                  { icon: Mail, title: t("contact.email"), text: "salut@melisfera.md" },
+                  { icon: MapPin, title: t("contact.address"), text: "Orașul Chișinău,\nRepublica Moldova" },
+                  { icon: Phone, title: t("contact.phone"), text: "+373 61058292" },
+                  { icon: Mail, title: t("contact.email"), text: "setmex6@gmail.com" },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="flex gap-4 group">
                     <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white dark:group-hover:bg-amber-600 transition-all">
