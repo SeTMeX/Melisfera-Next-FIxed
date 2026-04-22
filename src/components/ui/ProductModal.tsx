@@ -35,14 +35,14 @@ const VARIANTS: Record<string, Variant[]> = {
     {
       label: "5 kg",
       price: "600 MDL",
-      images: ["/photos/salcam.jpg"],
+      images: ["/photos/salcam5kg01.png", "/photos/salcam5kg02.png", "/photos/salcam5kg03.png"],
     },
   ],
   tei: [
     {
       label: "0.5 kg",
       price: "70 MDL",
-      images: ["/photos/tei.jpg"],
+      images: ["/photos/tei05kg01.png", "/photos/tei05kg02.png", "/photos/tei05kg03.png"],
     },
     {
       label: "1 kg",
@@ -79,12 +79,20 @@ const VARIANTS: Record<string, Variant[]> = {
     {
       label: "Mare",
       price: "550 MDL",
-      images: ["/photos/cadou.jpg"],
+      images: ["/photos/cadoumare01.png", "/photos/cadoumare02.png", "/photos/cadoumare03.png"],
     },
   ],
   polen: [
-    { label: "100g", price: "50 MDL" },
-    { label: "200g", price: "100 MDL" },
+    {
+      label: "100g",
+      price: "50 MDL",
+      images: ["/photos/polen01.png", "/photos/polen02.png", "/photos/polen03.png"],
+    },
+    {
+      label: "200g",
+      price: "100 MDL",
+      images: ["/photos/polen01.png", "/photos/polen02.png", "/photos/polen03.png"],
+    },
   ],
   propolis: [
     { label: "Lichid", price: "50 MDL" },
@@ -124,7 +132,8 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
   useEffect(() => {
     if (prevProductIdRef.current !== product?.id) {
-      setSelectedVariant(null);
+      const v = product ? getVariants(product) : null;
+      setSelectedVariant(v && v.length > 0 ? v[0] : null);
       setActiveImg(0);
       prevProductIdRef.current = product?.id;
     }
