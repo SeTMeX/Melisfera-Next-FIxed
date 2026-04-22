@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import { ProductCard } from "@/components/home/ProductCard";
 import { BeeDecoration } from "@/components/home/BeeDecoration";
@@ -11,8 +10,14 @@ import { useTranslation } from "react-i18next";
 
 export function ProducePage() {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language === "en" ? "en" : "ro";
+  const lang: "ro" | "en" | "ru" =
+    i18n.language === "en" ? "en" : i18n.language === "ru" ? "ru" : "ro";
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const naturalNote =
+    lang === "ro" ? "Toate produsele sunt 100% naturale, neprocesate termic și fără aditivi"
+    : lang === "ru" ? "Все продукты 100% натуральные, без термической обработки и без добавок"
+    : "All products are 100% natural, unheated and without additives";
 
   return (
     <div className="min-h-screen bg-amber-50 dark:bg-black">
@@ -70,9 +75,7 @@ export function ProducePage() {
 
       <div className="bg-white dark:bg-neutral-900 border-t border-amber-100 dark:border-neutral-800 py-10 text-center">
         <p className="text-amber-700 dark:text-amber-400 text-base font-medium">
-          🐝 {lang === "en"
-            ? "All products are 100% natural, unheated and without additives"
-            : "Toate produsele sunt 100% naturale, neprocesate termic și fără aditivi"}
+          🐝 {naturalNote}
         </p>
       </div>
 

@@ -19,19 +19,21 @@ interface ProductProps {
 
 function getDisplayPrice(name: string, fallback: string): string {
   const n = name.toLowerCase();
-  if (n.includes("salcâm") || n.includes("salcam")) return "150 MDL";
-  if (n.includes("tei"))                             return "130 MDL";
-  if (n.includes("câmp") || n.includes("camp"))      return "130 MDL";
-  if (n.includes("polen"))                           return "100 MDL";
-  if (n.includes("tuică") || n.includes("tuica"))    return "120 MDL";
-  if (n.includes("propolis"))                        return "50 MDL";
-  if (n.includes("fagure"))                          return "100 MDL";
-  if (n.includes("cadou") || n.includes("gift") || n.includes("pachet")) return "300 MDL";
+  if (n.includes("salcâm") || n.includes("salcam") || n.includes("акаци")) return "150 MDL";
+  if (n.includes("tei") || n.includes("липов"))                            return "130 MDL";
+  if (n.includes("câmp") || n.includes("camp") || n.includes("лугов"))     return "130 MDL";
+  if (n.includes("polen") || n.includes("пыльц"))                          return "100 MDL";
+  if (n.includes("tuică") || n.includes("tuica") || n.includes("брэнди"))  return "120 MDL";
+  if (n.includes("propolis") || n.includes("прополис"))                    return "50 MDL";
+  if (n.includes("fagure") || n.includes("сот"))                           return "100 MDL";
+  if (n.includes("cadou") || n.includes("gift") || n.includes("pachet") || n.includes("подар")) return "300 MDL";
   return fallback;
 }
 
 export function ProductCard({ id, name, image, imageColor, price = "120 MDL", onClick, product }: ProductProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang: "ro" | "en" | "ru" =
+    i18n.language === "en" ? "en" : i18n.language === "ru" ? "ru" : "ro";
   const addItem = useCartStore((s: any) => s.addItem);
   const { toggleFavorite, isFavorite } = useFavoritesStore();
   const liked = isFavorite(id);
@@ -40,17 +42,32 @@ export function ProductCard({ id, name, image, imageColor, price = "120 MDL", on
   const imageSrc = image ?? fallbackImage;
   const displayPrice = getDisplayPrice(name, price);
 
+  const msgAddedCart =
+    lang === "ro" ? `"${name}" adăugat în coș 🍯`
+    : lang === "ru" ? `"${name}" добавлено в корзину 🍯`
+    : `"${name}" added to cart 🍯`;
+
+  const msgRemovedFav =
+    lang === "ro" ? `"${name}" eliminat din favorite`
+    : lang === "ru" ? `"${name}" удалено из избранного`
+    : `"${name}" removed from favorites`;
+
+  const msgAddedFav =
+    lang === "ro" ? `"${name}" adăugat la favorite ❤️`
+    : lang === "ru" ? `"${name}" добавлено в избранное ❤️`
+    : `"${name}" added to favorites ❤️`;
+
   const handleBuy = (e: React.MouseEvent) => {
     e.stopPropagation();
     addItem({ id, name, image: imageSrc, imageColor, price: displayPrice });
-    toast.success(`"${name}" adăugat în coș 🍯`);
+    toast.success(msgAddedCart);
   };
 
   const handleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!product) return;
     toggleFavorite(product);
-    toast.success(liked ? `"${name}" eliminat din favorite` : `"${name}" adăugat la favorite ❤️`);
+    toast.success(liked ? msgRemovedFav : msgAddedFav);
   };
 
   return (

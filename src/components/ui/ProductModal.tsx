@@ -113,7 +113,8 @@ function getVariants(product: Product): Variant[] | null {
 
 export function ProductModal({ product, onClose }: ProductModalProps) {
   const { i18n } = useTranslation();
-  const lang = i18n.language === "en" ? "en" : "ro";
+  const lang: "ro" | "en" | "ru" =
+    i18n.language === "en" ? "en" : i18n.language === "ru" ? "ru" : "ro";
   const addItem = useCartStore((s: any) => s.addItem);
   const { toggleFavorite, isFavorite } = useFavoritesStore();
   const [activeImg, setActiveImg] = useState(0);
@@ -139,6 +140,48 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
     }
   }, [product?.id]);
 
+  const T = {
+    selectSize:
+      lang === "ro" ? "Selectează o mărime înainte de a adăuga în coș"
+      : lang === "ru" ? "Выберите размер перед добавлением в корзину"
+      : "Please select a size first",
+    inStock:
+      lang === "ro" ? "În stoc"
+      : lang === "ru" ? "В наличии"
+      : "In stock",
+    chooseSize:
+      lang === "ro" ? "Alege mărimea"
+      : lang === "ru" ? "Выберите размер"
+      : "Choose size",
+    description:
+      lang === "ro" ? "Descriere"
+      : lang === "ru" ? "Описание"
+      : "Description",
+    details:
+      lang === "ro" ? "Detalii"
+      : lang === "ru" ? "Детали"
+      : "Details",
+    addToCart:
+      lang === "ro" ? "Adaugă în coș"
+      : lang === "ru" ? "Добавить в корзину"
+      : "Add to cart",
+  };
+
+  const msgAddedCart = (n: string) =>
+    lang === "ro" ? `"${n}" adăugat în coș 🍯`
+    : lang === "ru" ? `"${n}" добавлено в корзину 🍯`
+    : `"${n}" added to cart 🍯`;
+
+  const msgRemovedFav = (n: string) =>
+    lang === "ro" ? `"${n}" eliminat din favorite`
+    : lang === "ru" ? `"${n}" удалено из избранного`
+    : `"${n}" removed from favorites`;
+
+  const msgAddedFav = (n: string) =>
+    lang === "ro" ? `"${n}" adăugat la favorite ❤️`
+    : lang === "ru" ? `"${n}" добавлено в избранное ❤️`
+    : `"${n}" added to favorites ❤️`;
+
   const handleSelectVariant = (v: Variant) => {
     setSelectedVariant(v);
     setActiveImg(0);
@@ -152,7 +195,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
   const handleAdd = () => {
     if (!product) return;
     if (variants && !selectedVariant) {
-      toast.error(lang === "ro" ? "Selectează o mărime înainte de a adăuga în coș" : "Please select a size first");
+      toast.error(T.selectSize);
       return;
     }
     addItem({
@@ -162,7 +205,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
       imageColor: product.imageColor,
       price: displayPrice,
     });
-    toast.success(`"${product.name[lang]}" adăugat în coș 🍯`);
+    toast.success(msgAddedCart(product.name[lang]));
     onClose();
   };
 
@@ -170,9 +213,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
     if (!product) return;
     toggleFavorite(product);
     toast.success(
-      liked
-        ? `"${product.name[lang]}" eliminat din favorite`
-        : `"${product.name[lang]}" adăugat la favorite ❤️`
+      liked ? msgRemovedFav(product.name[lang]) : msgAddedFav(product.name[lang])
     );
   };
 
@@ -325,7 +366,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                     {displayPrice}
                   </span>
                   <span className="text-xs px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 font-semibold border border-green-200 dark:border-green-800">
-                    {lang === "ro" ? "În stoc" : "In stock"}
+                    {T.inStock}
                   </span>
                 </div>
 
@@ -333,7 +374,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 {variants && (
                   <div>
                     <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-2.5">
-                      {lang === "ro" ? "Alege mărimea" : "Choose size"}
+                      {T.chooseSize}
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {variants.map((v) => (
@@ -359,7 +400,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
                 <div>
                   <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-2">
-                    {lang === "ro" ? "Descriere" : "Description"}
+                    {T.description}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {product.description[lang]}
@@ -370,7 +411,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
                 <div>
                   <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-3">
-                    {lang === "ro" ? "Detalii" : "Details"}
+                    {T.details}
                   </h3>
                   <ul className="space-y-2.5">
                     {product.details[lang].map((detail, i) => (
@@ -405,7 +446,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                   className="flex-1 py-3.5 sm:py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 transition-all shadow-lg shadow-amber-300/30 dark:shadow-amber-900/30 flex items-center justify-center gap-2.5 text-sm sm:text-base"
                 >
                   <ShoppingBag size={19} />
-                  {lang === "ro" ? "Adaugă în coș" : "Add to cart"}
+                  {T.addToCart}
                 </motion.button>
               </div>
             </div>
