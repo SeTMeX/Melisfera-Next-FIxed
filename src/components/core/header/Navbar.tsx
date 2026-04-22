@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, LogIn, UserPlus, User, ShieldCheck } from "lucide-react";
+import { Menu, X, LogIn, UserPlus, User, ShieldCheck, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import LogInForm from "@/components/core/auth/LogIn";
@@ -24,6 +24,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: t("navBar.home") },
@@ -116,12 +117,43 @@ export function Navbar() {
             {/* Right side */}
             <div className="hidden md:flex items-center gap-3">
               {/* Language switcher */}
-              <button
-                onClick={() => i18n.changeLanguage(currentLang === "ro" ? "en" : "ro")}
-                className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600 transition-all"
-              >
-                {currentLang === "ro" ? "EN" : "RO"}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                  className="flex items-center gap-1 text-xs font-bold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600 transition-all"
+                >
+                  <Globe size={14} />
+                  {currentLang === "ro" ? "RO" : currentLang === "en" ? "EN" : "RU"}
+                </button>
+                {langDropdownOpen && (
+                  <div className="absolute right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50">
+                    <button
+                      onClick={() => { i18n.changeLanguage("ro"); setLangDropdownOpen(false); }}
+                      className={`block w-full text-left px-3 py-2 text-xs font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                        currentLang === "ro" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400" : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      RO - Română
+                    </button>
+                    <button
+                      onClick={() => { i18n.changeLanguage("en"); setLangDropdownOpen(false); }}
+                      className={`block w-full text-left px-3 py-2 text-xs font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                        currentLang === "en" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400" : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      EN - English
+                    </button>
+                    <button
+                      onClick={() => { i18n.changeLanguage("ru"); setLangDropdownOpen(false); }}
+                      className={`block w-full text-left px-3 py-2 text-xs font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                        currentLang === "ru" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400" : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      RU - Русский
+                    </button>
+                  </div>
+                )}
+              </div>
 
               <ThemeToggle />
 
@@ -216,14 +248,42 @@ export function Navbar() {
                     </Link>
                   )}
 
-                  <div className="flex items-center gap-2 mt-2 px-4">
-                    <button
-                      onClick={() => i18n.changeLanguage(currentLang === "ro" ? "en" : "ro")}
-                      className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300"
-                    >
-                      {currentLang === "ro" ? "EN" : "RO"}
-                    </button>
-                    <ThemeToggle />
+                  <div className="flex flex-col gap-2 mt-2 px-4">
+                    <div className="flex flex-col gap-1">
+                      <button
+                        onClick={() => i18n.changeLanguage("ro")}
+                        className={`text-xs font-medium px-3 py-2 rounded-lg border transition-colors ${
+                          currentLang === "ro" 
+                            ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border-amber-300 dark:border-amber-700" 
+                            : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600"
+                        }`}
+                      >
+                        RO - Română
+                      </button>
+                      <button
+                        onClick={() => i18n.changeLanguage("en")}
+                        className={`text-xs font-medium px-3 py-2 rounded-lg border transition-colors ${
+                          currentLang === "en" 
+                            ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border-amber-300 dark:border-amber-700" 
+                            : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600"
+                        }`}
+                      >
+                        EN - English
+                      </button>
+                      <button
+                        onClick={() => i18n.changeLanguage("ru")}
+                        className={`text-xs font-medium px-3 py-2 rounded-lg border transition-colors ${
+                          currentLang === "ru" 
+                            ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border-amber-300 dark:border-amber-700" 
+                            : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-amber-400 hover:text-amber-600"
+                        }`}
+                      >
+                        RU - Русский
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ThemeToggle />
+                    </div>
                   </div>
 
                   <div className="pt-2 flex flex-col gap-3">

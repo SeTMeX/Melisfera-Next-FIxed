@@ -4,12 +4,14 @@ import { useState } from "react";
 import { CartButton } from "@/components/ui/CartButton";
 import { CartDrawer } from "@/components/ui/CartDrawer";
 import { Toaster } from "@/components/ui/sonner";
+import { SyncProvider } from "@/components/providers/SyncProvider";
 
 export function GlobalProviders() {
   const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <>
+      <SyncProvider />
       <CartButton onClick={() => setCartOpen(true)} />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
       <Toaster
