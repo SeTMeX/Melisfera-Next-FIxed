@@ -29,15 +29,15 @@ export function ProducePage() {
         <BeeDecoration className="top-8 left-[5%]" duration={22} image="/photos/mg.png" />
         <BeeDecoration className="top-8 right-[8%]" duration={19} reverse image="/photos/pb.png" />
 
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+        <div className="relative z-10 text-center px-3 sm:px-4 max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-block py-1.5 px-5 rounded-full bg-white/25 text-white font-medium text-sm mb-6 border border-white/40 backdrop-blur-sm">
+            <span className="inline-block py-1 sm:py-1.5 px-3 sm:px-5 rounded-full bg-white/25 text-white font-medium text-xs sm:text-sm mb-4 sm:mb-6 border border-white/40 backdrop-blur-sm">
               🍯 Melisfera
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-5 text-white drop-shadow-md">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 sm:mb-5 text-white drop-shadow-md leading-tight">
               {t("productsPage.title")}
             </h1>
-            <p className="text-lg text-amber-50 max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-amber-50 max-w-lg sm:max-w-xl mx-auto leading-relaxed">
               {t("productsPage.subtitle")}
             </p>
           </motion.div>
@@ -50,8 +50,8 @@ export function ProducePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20">
+        <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -73,8 +73,8 @@ export function ProducePage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-neutral-900 border-t border-amber-100 dark:border-neutral-800 py-10 text-center">
-        <p className="text-amber-700 dark:text-amber-400 text-base font-medium">
+      <div className="bg-white dark:bg-neutral-900 border-t border-amber-100 dark:border-neutral-800 py-6 sm:py-8 md:py-10 text-center">
+        <p className="text-amber-700 dark:text-amber-400 text-sm sm:text-base font-medium px-3">
           🐝 {naturalNote}
         </p>
       </div>

@@ -73,7 +73,7 @@ export const products: Product[] = [
     },
     images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
     imageColor: "78350F",
-    price: "180 MDL",
+    price: "100 MDL",
     badge: { ro: "Exclusiv", en: "Exclusive", ru: "Эксклюзив" },
     details: {
       ro: ["Rețetă tradițională", "Produs artizanal", "Fabricat în Moldova", "Volum: 500ml"],

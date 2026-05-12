@@ -244,10 +244,10 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.93, y: 30 }}
             transition={{ type: "spring", damping: 26, stiffness: 210 }}
-            className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-12 z-50 rounded-none sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[100dvh] sm:max-h-[92dvh] bg-white dark:bg-neutral-900"
+            className="fixed inset-0 sm:inset-2 md:inset-8 lg:inset-12 z-50 rounded-none sm:rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-dvh sm:max-h-[95dvh] bg-white dark:bg-neutral-900"
           >
             {/* STÂNGA — Imagine */}
-            <div className="relative md:w-[48%] bg-neutral-100 dark:bg-neutral-800 flex flex-col h-[46svh] md:h-auto">
+            <div className="relative md:w-[48%] bg-neutral-100 dark:bg-neutral-800 flex flex-col h-[40svh] sm:h-[46svh] md:h-auto">
               <div className="relative flex-1 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -332,7 +332,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="md:w-[52%] flex flex-col overflow-y-auto overscroll-contain flex-1">
 
               {/* Header */}
-              <div className="flex items-start justify-between p-4 sm:p-6 pb-3">
+              <div className="flex items-start justify-between p-3 sm:p-4 md:p-6 pb-2 sm:pb-3">
                 <div className="flex-1 pr-3">
                   <div className="flex items-center gap-1 mb-2">
                     {[...Array(5)].map((_, i) => (
@@ -368,14 +368,14 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               </div>
 
               {/* Conținut */}
-              <div className="px-4 sm:px-6 space-y-4 flex-1">
+              <div className="px-3 sm:px-4 md:px-6 space-y-3 sm:space-y-4 flex-1">
 
                 {/* Preț */}
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl sm:text-3xl font-bold text-amber-500 dark:text-amber-400">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="text-xl sm:text-2xl md:text-3xl font-bold text-amber-500 dark:text-amber-400">
                     {displayPrice}
                   </span>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 font-semibold border border-green-200 dark:border-green-800">
+                  <span className="text-xs px-2 sm:px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 font-semibold border border-green-200 dark:border-green-800">
                     {T.inStock}
                   </span>
                 </div>
@@ -437,26 +437,26 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               </div>
 
               {/* Footer */}
-              <div className="p-4 sm:p-6 pt-3 border-t border-amber-100 dark:border-neutral-700/60 mt-3 shrink-0 flex gap-3">
+              <div className="p-3 sm:p-4 md:p-6 pt-2 sm:pt-3 border-t border-amber-100 dark:border-neutral-700/60 mt-2 sm:mt-3 shrink-0 flex gap-2 sm:gap-3">
                 <motion.button
                   onClick={handleFavorite}
                   whileTap={{ scale: 0.97 }}
-                  className={`py-3.5 sm:py-4 px-4 rounded-2xl font-bold transition-all border flex items-center justify-center gap-2 text-sm sm:text-base ${
+                  className={`py-2.5 sm:py-3.5 md:py-4 px-3 sm:px-4 rounded-xl sm:rounded-2xl font-bold transition-all border flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base ${
                     liked
                       ? "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-500"
                       : "bg-gray-100 dark:bg-neutral-800 border-transparent text-gray-500 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-500"
                   }`}
                 >
-                  <Heart size={18} className={liked ? "fill-red-500" : ""} />
+                  <Heart size={16} className={liked ? "fill-red-500" : ""} />
                 </motion.button>
 
                 <motion.button
                   onClick={handleAdd}
                   whileTap={{ scale: 0.97 }}
-                  className="flex-1 py-3.5 sm:py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 transition-all shadow-lg shadow-amber-300/30 dark:shadow-amber-900/30 flex items-center justify-center gap-2.5 text-sm sm:text-base"
+                  className="flex-1 py-2.5 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl font-bold text-white bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 transition-all shadow-lg shadow-amber-300/30 dark:shadow-amber-900/30 flex items-center justify-center gap-2 sm:gap-2.5 text-xs sm:text-sm md:text-base"
                 >
-                  <ShoppingBag size={19} />
-                  {T.addToCart}
+                  <ShoppingBag size={16} />
+                  <span className="hidden sm:inline">{T.addToCart}</span>
                 </motion.button>
               </div>
             </div>
