@@ -7,6 +7,12 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import type { Product } from "@/data/products";
 
+type Variant = {
+  label: string;
+  price: string;
+  images?: string[];
+};
+
 interface ProductProps {
   id: string;
   name: string;
@@ -59,7 +65,73 @@ export function ProductCard({ id, name, image, imageColor, price = "120 MDL", on
 
   const handleBuy = (e: React.MouseEvent) => {
     e.stopPropagation();
-    addItem({ id, name, image: imageSrc, imageColor, price: displayPrice });
+    
+    // Get variants similar to ProductModal logic
+    const getVariants = (product: Product): Variant[] | null => {
+      const name = (product.name.ro ?? "").toLowerCase();
+      const VARIANTS: Record<string, Variant[]> = {
+        salcam: [
+          { label: "0.5 kg", price: "80 MDL" },
+          { label: "1 kg", price: "150 MDL" },
+          { label: "5 kg", price: "600 MDL" },
+        ],
+        tei: [
+          { label: "0.5 kg", price: "70 MDL" },
+          { label: "1 kg", price: "130 MDL" },
+          { label: "5 kg", price: "500 MDL" },
+        ],
+        camp: [
+          { label: "0.5 kg", price: "70 MDL" },
+          { label: "1 kg", price: "130 MDL" },
+          { label: "5 kg", price: "500 MDL" },
+        ],
+        cadou: [
+          { label: "Mic", price: "300 MDL" },
+          { label: "Mare", price: "550 MDL" },
+        ],
+        polen: [
+          { label: "100g", price: "50 MDL" },
+          { label: "200g", price: "100 MDL" },
+        ],
+        propolis: [
+          { label: "Lichid", price: "50 MDL" },
+          { label: "Solid", price: "130 MDL" },
+        ],
+        tuica: [
+          { label: "Țuică de miere", price: "180 MDL", images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"] },
+        ],
+      };
+      
+      if (name.includes("salcâm") || name.includes("salcam")) return VARIANTS.salcam;
+      if (name.includes("tei")) return VARIANTS.tei;
+      if (name.includes("câmp") || name.includes("camp")) return VARIANTS.camp;
+      if (name.includes("cadou") || name.includes("gift") || name.includes("pachet")) return VARIANTS.cadou;
+      if (name.includes("polen")) return VARIANTS.polen;
+      if (name.includes("propolis")) return VARIANTS.propolis;
+      if (name.includes("tuică") || name.includes("tuica")) return VARIANTS.tuica;
+      return null;
+    };
+    
+    let finalPrice = displayPrice;
+    let finalName = name;
+    let finalImage = imageSrc;
+    
+    if (product) {
+      const variants = getVariants(product);
+      if (variants && variants.length > 1) {
+        // Select the second variant (index 1) like in ProductModal
+        const selectedVariant = variants[1];
+        finalPrice = selectedVariant.price;
+        finalName = `${name} - ${selectedVariant.label}`;
+        
+        // Use variant images if available
+        if (selectedVariant.images && selectedVariant.images.length > 0) {
+          finalImage = selectedVariant.images[0];
+        }
+      }
+    }
+    
+    addItem({ id, name: finalName, image: finalImage, imageColor, price: finalPrice });
     toast.success(msgAddedCart);
   };
 

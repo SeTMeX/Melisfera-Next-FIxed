@@ -54,7 +54,7 @@ export const products: Product[] = [
       en: "Wildflower honey comes from the nectar of multiple wildflower species. It has a complex, rich and aromatic taste, with different nuances depending on the season and harvest location.",
       ru: "Полифлёрный мёд получают из нектара множества полевых цветов. Обладает сложным, насыщенным и ароматным вкусом с разными оттенками в зависимости от сезона и места сбора.",
     },
-    images: ["/photos/salcam.jpg", "/photos/tei.jpg", "/photos/image.jpg"],
+    images: ["/photos/1flori1kg.png", "/photos/2flori1kg.png", "/photos/3flori1kg.png"],
     imageColor: "92400E",
     price: "100 MDL",
     details: {
@@ -71,7 +71,7 @@ export const products: Product[] = [
       en: "Honey brandy is a traditional Moldovan drink, obtained through the fermentation and distillation of bee honey. It has a warm, sweet taste with floral notes specific to honey, and a moderate alcohol content.",
       ru: "Медовая брэнди — традиционный молдавский напиток, получаемый путём ферментации и дистилляции пчелиного мёда. Имеет тёплый, сладковатый вкус с характерными для мёда цветочными нотами и умеренное содержание алкоголя.",
     },
-    images: ["/photos/tuica.jpg", "/photos/image.jpg", "/photos/salcam.jpg"],
+    images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
     imageColor: "78350F",
     price: "180 MDL",
     badge: { ro: "Exclusiv", en: "Exclusive", ru: "Эксклюзив" },

@@ -98,6 +98,13 @@ const VARIANTS: Record<string, Variant[]> = {
     { label: "Lichid", price: "50 MDL" },
     { label: "Solid",  price: "130 MDL" },
   ],
+  tuica: [
+    {
+      label: "Țuică de miere",
+      price: "180 MDL",
+      images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
+    },
+  ],
 };
 
 function getVariants(product: Product): Variant[] | null {
@@ -108,6 +115,7 @@ function getVariants(product: Product): Variant[] | null {
   if (name.includes("cadou") || name.includes("gift") || name.includes("pachet")) return VARIANTS.cadou;
   if (name.includes("polen"))                              return VARIANTS.polen;
   if (name.includes("propolis"))                           return VARIANTS.propolis;
+  if (name.includes("tuică") || name.includes("tuica"))   return VARIANTS.tuica;
   return null;
 }
 
@@ -125,16 +133,18 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
   const displayPrice = selectedVariant?.price ?? product?.price ?? "";
 
   const displayImages =
-    selectedVariant?.images && selectedVariant.images.length > 0
-      ? selectedVariant.images
-      : product?.images ?? [];
+    (product?.name.ro?.toLowerCase().includes("tuică") || product?.name.ro?.toLowerCase().includes("tuica"))
+      ? VARIANTS.tuica[0].images ?? []
+      : selectedVariant?.images && selectedVariant.images.length > 0
+        ? selectedVariant.images
+        : product?.images ?? [];
 
   const prevProductIdRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     if (prevProductIdRef.current !== product?.id) {
       const v = product ? getVariants(product) : null;
-      setSelectedVariant(v && v.length > 0 ? v[0] : null);
+      setSelectedVariant(v && v.length > 1 ? v[1] : v && v.length > 0 ? v[0] : null);
       setActiveImg(0);
       prevProductIdRef.current = product?.id;
     }
@@ -371,7 +381,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 </div>
 
                 {/* Selector mărimi */}
-                {variants && (
+                {variants && !(product.name.ro?.toLowerCase().includes("tuică") || product.name.ro?.toLowerCase().includes("tuica")) && (
                   <div>
                     <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-2.5">
                       {T.chooseSize}
