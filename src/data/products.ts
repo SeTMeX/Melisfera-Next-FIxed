@@ -56,7 +56,7 @@ export const products: Product[] = [
     },
     images: ["/photos/1flori1kg.png", "/photos/2flori1kg.png", "/photos/3flori1kg.png"],
     imageColor: "92400E",
-    price: "100 MDL",
+    price: "100 lei",
     details: {
       ro: ["Aromă complexă și bogată", "Mix natural de flori", "Recoltată în Moldova", "Cantitate: 500g"],
       en: ["Complex and rich aroma", "Natural flower mix", "Harvested in Moldova", "Weight: 500g"],
@@ -73,7 +73,7 @@ export const products: Product[] = [
     },
     images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
     imageColor: "78350F",
-    price: "100 MDL",
+    price: "100 lei",
     badge: { ro: "Exclusiv", en: "Exclusive", ru: "Эксклюзив" },
     details: {
       ro: ["Rețetă tradițională", "Produs artizanal", "Fabricat în Moldova", "Volum: 500ml"],

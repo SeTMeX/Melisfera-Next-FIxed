@@ -90,7 +90,7 @@ const VARIANTS: Record<string, Variant[]> = {
     },
     {
       label: "200g",
-      price: "100 MDL",
+      price: "100 lei",
       images: ["/photos/polen01.png", "/photos/polen02.png", "/photos/polen03.png"],
     },
   ],
@@ -101,7 +101,7 @@ const VARIANTS: Record<string, Variant[]> = {
   tuica: [
     {
       label: "Țuică de miere",
-      price: "180 MDL",
+      price: "100 lei",
       images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
     },
   ],
@@ -244,10 +244,10 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.93, y: 30 }}
             transition={{ type: "spring", damping: 26, stiffness: 210 }}
-            className="fixed inset-0 sm:inset-2 md:inset-8 lg:inset-12 z-50 rounded-none sm:rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-dvh sm:max-h-[95dvh] bg-white dark:bg-neutral-900"
+            className="fixed inset-0 sm:inset-1 md:inset-8 lg:inset-12 z-50 rounded-none sm:rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-dvh sm:max-h-[98dvh] bg-white dark:bg-neutral-900"
           >
             {/* STÂNGA — Imagine */}
-            <div className="relative md:w-[48%] bg-neutral-100 dark:bg-neutral-800 flex flex-col h-[40svh] sm:h-[46svh] md:h-auto">
+            <div className="relative md:w-[48%] bg-neutral-100 dark:bg-neutral-800 flex flex-col h-[60svh] sm:h-[50svh] md:h-auto">
               <div className="relative flex-1 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img

@@ -28,8 +28,8 @@ function getDisplayPrice(name: string, fallback: string): string {
   if (n.includes("salcâm") || n.includes("salcam") || n.includes("акаци")) return "150 MDL";
   if (n.includes("tei") || n.includes("липов"))                            return "130 MDL";
   if (n.includes("câmp") || n.includes("camp") || n.includes("лугов"))     return "130 MDL";
-  if (n.includes("polen") || n.includes("пыльц"))                          return "100 MDL";
-  if (n.includes("tuică") || n.includes("tuica") || n.includes("брэнди"))  return "120 MDL";
+  if (n.includes("polen") || n.includes("пыльц"))                          return "100 lei";
+  if (n.includes("tuică") || n.includes("tuica") || n.includes("брэнди"))  return "100 lei";
   if (n.includes("propolis") || n.includes("прополис"))                    return "50 MDL";
   if (n.includes("fagure") || n.includes("сот"))                           return "100 MDL";
   if (n.includes("cadou") || n.includes("gift") || n.includes("pachet") || n.includes("подар")) return "300 MDL";
