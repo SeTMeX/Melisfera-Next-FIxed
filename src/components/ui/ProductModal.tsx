@@ -105,6 +105,13 @@ const VARIANTS: Record<string, Variant[]> = {
       images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"],
     },
   ],
+  polenMiere: [
+    {
+      label: "500g",
+      price: "110 lei",
+      images: ["/photos/polenm1.png", "/photos/polenm2.png", "/photos/polenm3.png"],
+    },
+  ],
 };
 
 function getVariants(product: Product): Variant[] | null {
@@ -113,9 +120,10 @@ function getVariants(product: Product): Variant[] | null {
   if (name.includes("tei"))                                return VARIANTS.tei;
   if (name.includes("câmp") || name.includes("camp"))      return VARIANTS.camp;
   if (name.includes("cadou") || name.includes("gift") || name.includes("pachet")) return VARIANTS.cadou;
+  if (name.includes("polen") && name.includes("miere"))   return VARIANTS.polenMiere;
   if (name.includes("polen"))                              return VARIANTS.polen;
   if (name.includes("propolis"))                           return VARIANTS.propolis;
-  if (name.includes("tuică") || name.includes("tuica"))   return VARIANTS.tuica;
+  if (name.includes("tuică") || name.includes("tuica"))     return VARIANTS.tuica;
   return null;
 }
 
@@ -381,7 +389,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 </div>
 
                 {/* Selector mărimi */}
-                {variants && !(product.name.ro?.toLowerCase().includes("tuică") || product.name.ro?.toLowerCase().includes("tuica")) && (
+                {variants && !(product.name.ro?.toLowerCase().includes("tuică") || product.name.ro?.toLowerCase().includes("tuica") || (product.name.ro?.toLowerCase().includes("polen") && product.name.ro?.toLowerCase().includes("miere"))) && (
                   <div>
                     <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-2.5">
                       {T.chooseSize}
@@ -421,17 +429,33 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
                 <div>
                   <h3 className="text-[11px] font-bold text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-3">
-                    {T.details}
+                    {lang === "ro" ? "Beneficii" : lang === "ru" ? "Преимущества" : "Benefits"}
                   </h3>
                   <ul className="space-y-2.5">
-                    {product.details[lang].map((detail, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-                        <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
-                          <Check size={10} className="text-amber-600 dark:text-amber-400" />
-                        </div>
-                        {detail}
-                      </li>
-                    ))}
+                    <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                        <Check size={10} className="text-amber-600 dark:text-amber-400" />
+                      </div>
+                      {lang === "ro" ? "100% natural și organic" : lang === "ru" ? "100% натуральный и органический" : "100% natural and organic"}
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                        <Check size={10} className="text-amber-600 dark:text-amber-400" />
+                      </div>
+                      {lang === "ro" ? "Producție locală în Moldova" : lang === "ru" ? "Местное производство в Молдове" : "Local production in Moldova"}
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                        <Check size={10} className="text-amber-600 dark:text-amber-400" />
+                      </div>
+                      {lang === "ro" ? "Calitate superioară certificată" : lang === "ru" ? "Сертифицированное высочайшее качество" : "Premium certified quality"}
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                        <Check size={10} className="text-amber-600 dark:text-amber-400" />
+                      </div>
+                      {lang === "ro" ? "Fără conservanți sau aditivi" : lang === "ru" ? "Без консервантов и добавок" : "No preservatives or additives"}
+                    </li>
                   </ul>
                 </div>
               </div>

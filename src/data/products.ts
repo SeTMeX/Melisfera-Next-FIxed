@@ -6,7 +6,7 @@ export interface Product {
   imageColor: string;
   price: string;
   badge?: { ro: string; en: string; ru: string };
-  details: { ro: string[]; en: string[]; ru: string[] };
+  details?: { ro: string[]; en: string[]; ru: string[] };
 }
 
 export const products: Product[] = [
@@ -40,11 +40,6 @@ export const products: Product[] = [
     imageColor: "D97706",
     price: "110 MDL",
     badge: { ro: "Popular", en: "Popular", ru: "Популярный" },
-    details: {
-      ro: ["Efect calmant natural", "Ideală pentru ceai", "Recoltată în Moldova", "Cantitate: 500g"],
-      en: ["Natural calming effect", "Ideal for tea", "Harvested in Moldova", "Weight: 500g"],
-      ru: ["Натуральный успокаивающий эффект", "Идеален для чая", "Собран в Молдове", "Вес: 500г"],
-    },
   },
   {
     id: "3",
@@ -57,11 +52,6 @@ export const products: Product[] = [
     images: ["/photos/1flori1kg.png", "/photos/2flori1kg.png", "/photos/3flori1kg.png"],
     imageColor: "92400E",
     price: "100 lei",
-    details: {
-      ro: ["Aromă complexă și bogată", "Mix natural de flori", "Recoltată în Moldova", "Cantitate: 500g"],
-      en: ["Complex and rich aroma", "Natural flower mix", "Harvested in Moldova", "Weight: 500g"],
-      ru: ["Сложный и богатый аромат", "Натуральная смесь цветов", "Собран в Молдове", "Вес: 500г"],
-    },
   },
   {
     id: "4",
@@ -75,11 +65,6 @@ export const products: Product[] = [
     imageColor: "78350F",
     price: "100 lei",
     badge: { ro: "Exclusiv", en: "Exclusive", ru: "Эксклюзив" },
-    details: {
-      ro: ["Rețetă tradițională", "Produs artizanal", "Fabricat în Moldova", "Volum: 500ml"],
-      en: ["Traditional recipe", "Artisan product", "Made in Moldova", "Volume: 500ml"],
-      ru: ["Традиционный рецепт", "Ремесленный продукт", "Произведено в Молдове", "Объём: 500мл"],
-    },
   },
   {
     id: "5",
@@ -93,14 +78,22 @@ export const products: Product[] = [
     imageColor: "B45309",
     price: "250 MDL",
     badge: { ro: "Cadou ideal", en: "Perfect Gift", ru: "Идеальный подарок" },
-    details: {
-      ro: ["Include 3 sortimente de miere", "Ambalaj cadou elegant", "Personalizabil", "Livrare în toată Moldova"],
-      en: ["Includes 3 honey varieties", "Elegant gift packaging", "Customizable", "Delivery across Moldova"],
-      ru: ["Включает 3 сорта мёда", "Элегантная подарочная упаковка", "С возможностью персонализации", "Доставка по всей Молдове"],
-    },
   },
   {
     id: "6",
+    name: { ro: "Miere cu Polen", en: "Honey with Pollen", ru: "Мёд с пыльцой" },
+    description: {
+      ro: "Mierea cu polen este o combinație perfectă între beneficiile mierii și proprietățile nutritive ale polenului. Polenul adaugă un plus de vitamine, minerale și proteine, transformând mierea într-un superfood complet.",
+      en: "Honey with pollen is a perfect combination between the benefits of honey and the nutritional properties of pollen. Pollen adds extra vitamins, minerals and proteins, turning honey into a complete superfood.",
+      ru: "Мёд с пыльцой — это идеальное сочетание пользы мёда и питательных свойств пыльцы. Пыльца добавляет дополнительные витамины, минералы и белки, превращая мёд в полноценный суперфуд.",
+    },
+    images: ["/photos/polenm1.png", "/photos/polenm2.png", "/photos/polenm3.png"],
+    imageColor: "F59E0B",
+    price: "110 lei",
+    badge: { ro: "Superfood", en: "Superfood", ru: "Суперфуд" },
+  },
+  {
+    id: "7",
     name: { ro: "Fagure de Miere", en: "Honeycomb", ru: "Медовые соты" },
     description: {
       ro: "Fagurul de miere este mierea în forma sa cea mai pură și naturală, direct din stup. Ceara de albine și mierea formează împreună un produs excepțional, bogat în enzime și antioxidanți.",
@@ -110,14 +103,9 @@ export const products: Product[] = [
     images: ["/photos/fagure.jpg", "/photos/salcam.jpg", "/photos/image.jpg"],
     imageColor: "D97706",
     price: "150 MDL",
-    details: {
-      ro: ["Formă naturală de miere", "Ceară comestibilă", "Bogat în enzime", "Greutate: 400g"],
-      en: ["Natural form of honey", "Edible wax", "Rich in enzymes", "Weight: 400g"],
-      ru: ["Натуральная форма мёда", "Съедобный воск", "Богат ферментами", "Вес: 400г"],
-    },
   },
   {
-    id: "7",
+    id: "8",
     name: { ro: "Polen de Albine", en: "Bee Pollen", ru: "Пчелиная пыльца" },
     description: {
       ro: "Polenul de albine este considerat unul dintre cele mai complete alimente din natură. Conține proteine, aminoacizi esențiali, vitamine și minerale. Este un energizant natural excelent.",
@@ -128,14 +116,9 @@ export const products: Product[] = [
     imageColor: "F59E0B",
     price: "90 MDL",
     badge: { ro: "Superfood", en: "Superfood", ru: "Суперфуд" },
-    details: {
-      ro: ["Bogat în proteine", "Energizant natural", "Recoltat primăvara", "Cantitate: 250g"],
-      en: ["Rich in proteins", "Natural energizer", "Spring harvested", "Weight: 250g"],
-      ru: ["Богат белками", "Натуральный энергетик", "Собран весной", "Вес: 250г"],
-    },
   },
   {
-    id: "8",
+    id: "9",
     name: { ro: "Propolis", en: "Propolis", ru: "Прополис" },
     description: {
       ro: "Propolisul este o substanță rășinoasă produsă de albine, cu puternice proprietăți antibacteriene și antiinflamatoare. Este folosit în medicina tradițională de secole pentru întărirea sistemului imunitar.",
@@ -146,10 +129,5 @@ export const products: Product[] = [
     imageColor: "451A03",
     price: "130 MDL",
     badge: { ro: "Imunitate", en: "Immunity", ru: "Иммунитет" },
-    details: {
-      ro: ["Proprietăți antibacteriene", "Întărește imunitatea", "Extras natural", "Cantitate: 100g"],
-      en: ["Antibacterial properties", "Strengthens immunity", "Natural extract", "Weight: 100g"],
-      ru: ["Антибактериальные свойства", "Укрепляет иммунитет", "Натуральный экстракт", "Вес: 100г"],
-    },
   },
 ];

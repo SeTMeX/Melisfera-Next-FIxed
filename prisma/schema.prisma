@@ -33,14 +33,15 @@ model User {
 
 model Product {
   id          String   @id @default(cuid())
-  name        String   // JSON string: { ro: string, en: string }
-  description String   // JSON string: { ro: string, en: string }
+  name        String   // JSON string: { ro: string, en: string, ru: string }
+  description String   // JSON string: { ro: string, en: string, ru: string }
   price       Float
+  currency    String   @default("MDL")
   variants    String?  // JSON string: [{ label: string, price: number }]
   images      String   // JSON string: array of image URLs
   imageColor  String
-  badge       String?  // JSON string: { ro: string, en: string }
-  details     String   // JSON string: { ro: string[], en: string[] }
+  badge       String?  // JSON string: { ro: string, en: string, ru: string }
+  details     String   // JSON string: { ro: string[], en: string[], ru: string[] }
   inStock     Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

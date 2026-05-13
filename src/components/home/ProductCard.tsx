@@ -28,6 +28,7 @@ function getDisplayPrice(name: string, fallback: string): string {
   if (n.includes("salcâm") || n.includes("salcam") || n.includes("акаци")) return "150 MDL";
   if (n.includes("tei") || n.includes("липов"))                            return "130 MDL";
   if (n.includes("câmp") || n.includes("camp") || n.includes("лугов"))     return "130 MDL";
+  if (n.includes("polen") && n.includes("miere"))                         return "110 lei";
   if (n.includes("polen") || n.includes("пыльц"))                          return "100 lei";
   if (n.includes("tuică") || n.includes("tuica") || n.includes("брэнди"))  return "100 lei";
   if (n.includes("propolis") || n.includes("прополис"))                    return "50 MDL";
@@ -98,7 +99,10 @@ export function ProductCard({ id, name, image, imageColor, price = "120 MDL", on
           { label: "Solid", price: "130 MDL" },
         ],
         tuica: [
-          { label: "Țuică de miere", price: "180 MDL", images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"] },
+          { label: "Țuică de miere", price: "100 lei", images: ["/photos/tuica1.png", "/photos/22tuica.png", "/photos/tuica3.png"] },
+        ],
+        polenMiere: [
+          { label: "500g", price: "110 lei", images: ["/photos/polenm1.png", "/photos/polenm2.png", "/photos/polenm3.png"] },
         ],
       };
       
