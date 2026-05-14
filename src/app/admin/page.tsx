@@ -17,8 +17,14 @@ interface UserData {
 interface Product {
   id: string;
   name: string;
+  description: string;
   price: number;
+  currency: string;
   variants?: string;
+  images: string;
+  imageColor: string;
+  badge?: string;
+  details: string;
   inStock: boolean;
   createdAt: string;
 }
@@ -239,14 +245,17 @@ export default function AdminPage() {
               </tbody>
             </table>
           ) : (
-            <table className="w-full min-w-[600px]">
+            <table className="w-full min-w-[900px]">
               <thead>
                 <tr className="border-b border-gray-800 text-gray-400 text-sm">
-                  <th className="text-left px-6 py-3">Produs</th>
-                  <th className="text-left px-6 py-3">Preț / Variante</th>
-                  <th className="text-left px-6 py-3">Stoc</th>
-                  <th className="text-left px-6 py-3">Adăugat</th>
-                  <th className="text-right px-6 py-3">Acțiuni</th>
+                  <th className="text-left px-6 py-3 w-16">Imagine</th>
+                  <th className="text-left px-6 py-3 w-48">Produs</th>
+                  <th className="text-left px-6 py-3">Descriere</th>
+                  <th className="text-left px-6 py-3 w-40">Preț / Variante</th>
+                  <th className="text-left px-6 py-3 w-24">Badge</th>
+                  <th className="text-left px-6 py-3 w-24">Stoc</th>
+                  <th className="text-left px-6 py-3 w-32">Adăugat</th>
+                  <th className="text-right px-6 py-3 w-16">Acțiuni</th>
                 </tr>
               </thead>
               <tbody>
@@ -255,42 +264,81 @@ export default function AdminPage() {
                     try { return JSON.parse(p.name)?.ro || p.name; }
                     catch { return p.name; }
                   })();
+                  const description = (() => {
+                    try { return JSON.parse(p.description)?.ro || p.description; }
+                    catch { return p.description; }
+                  })();
+                  const badge = (() => {
+                    try { return JSON.parse(p.badge || "null")?.ro || null; }
+                    catch { return null; }
+                  })();
                   const variants = (() => {
                     try {
-                      const v = JSON.parse((p as any).variants || "null");
+                      const v = JSON.parse(p.variants || "null");
                       return Array.isArray(v) ? v : null;
                     } catch { return null; }
                   })();
+                  const images = (() => {
+                    try { return JSON.parse(p.images || "[]"); }
+                    catch { return []; }
+                  })();
+                  const mainImage = images[0] || "/photos/image.jpg";
                   return (
                     <tr key={p.id} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
-                      <td className="px-6 py-4 font-medium">{productName}</td>
+                      <td className="px-6 py-4">
+                        <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-800">
+                          <img
+                            src={mainImage}
+                            alt={productName}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.src = "/photos/image.jpg";
+                            }}
+                          />
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="font-medium text-white">{productName}</div>
+                      </td>
+                      <td className="px-6 py-4 text-gray-300 text-sm max-w-md line-clamp-2">{description}</td>
                       <td className="px-6 py-4">
                         {variants ? (
-                          <div className="flex flex-wrap gap-1.5">
+                          <div className="flex flex-col gap-1">
                             {variants.map((v: { label: string; price: number }, i: number) => (
                               <span
                                 key={i}
                                 className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 text-xs border border-amber-500/20"
                               >
-                                {v.label} — {v.price} MDL
+                                {v.label} — {v.price} {p.currency}
                               </span>
                             ))}
                           </div>
                         ) : (
-                          <span className="text-amber-400 font-medium">{p.price} MDL</span>
+                          <span className="text-amber-400 font-medium text-sm">{p.price} {p.currency}</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        {badge && (
+                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                            {badge}
+                          </span>
                         )}
                       </td>
                       <td className="px-6 py-4">
                         <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
                           p.inStock
-                            ? "bg-green-500/20 text-green-400"
-                            : "bg-red-500/20 text-red-400"
+                            ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                            : "bg-red-500/20 text-red-400 border border-red-500/30"
                         }`}>
                           {p.inStock ? "În stoc" : "Epuizat"}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-gray-400 text-sm">
-                        {new Date(p.createdAt).toLocaleDateString("ro-RO")}
+                        {new Date(p.createdAt).toLocaleDateString("ro-RO", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric"
+                        })}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <button
@@ -306,7 +354,7 @@ export default function AdminPage() {
                 })}
                 {products.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="px-6 py-16 text-center text-gray-500">
+                    <td colSpan={8} className="px-6 py-16 text-center text-gray-500">
                       Niciun produs găsit
                     </td>
                   </tr>
