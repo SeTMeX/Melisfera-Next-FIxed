@@ -16,7 +16,7 @@ export default function Home() {
         <img
           src="/photos/image.jpg"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-top z-0"
+          className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0"
         />
         <div className="absolute inset-0 bg-amber-200/45 dark:bg-black/40 z-[1]" />
 
