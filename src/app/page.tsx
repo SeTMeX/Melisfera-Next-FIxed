@@ -10,9 +10,9 @@ export default function Home() {
   const { t } = useTranslation();
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-x-hidden">
       {/* HERO */}
-      <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center">
+      <section className="relative min-h-[calc(100dvh-80px)] flex items-center justify-center">
         <img
           src="/photos/image.jpg"
           alt=""
