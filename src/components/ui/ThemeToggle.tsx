@@ -21,30 +21,24 @@ const ThemeToggle = () => {
         height="100%"
       >
         <g transform="translate(3.5 3.5)">
-          <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
-            <rect
-              fill={checked ? "#2b4360" : "#83cbd8"}
-              transform="translate(3.5 3.5)"
-              rx="17.5"
-              height={35}
-              width="60.667"
-              style={{ transition: "fill 0.25s cubic-bezier(0.4, 0, 0.2, 1)" }}
-            />
-          </g>
+          <rect
+            fill={checked ? "#2b4360" : "#83cbd8"}
+            transform="translate(0 0)"
+            rx="17.5"
+            height={35}
+            width="60.667"
+            style={{ transition: "fill 0.25s cubic-bezier(0.4, 0, 0.2, 1)" }}
+          />
           <g
             transform={checked ? "translate(30.333 2.333)" : "translate(2.333 2.333)"}
             style={{ transition: "transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)" }}
           >
             <g opacity={checked ? 0 : 1} style={{ transition: "opacity 0.25s" }}>
-              <g filter="url(#sun-outer)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
-                <circle fill="#f8e664" transform="translate(5.83 5.83)" r="15.167" cy="15.167" cx="15.167" />
-              </g>
+              <circle fill="#f8e664" r="15.167" cy="15.167" cx="15.167" />
               <circle fill="#fcf4b9" transform="translate(8.167 8.167)" r={7} cy={7} cx={7} />
             </g>
             <g opacity={checked ? 1 : 0} style={{ transition: "opacity 0.25s" }}>
-              <g filter="url(#moon)" transform="matrix(1, 0, 0, 1, -31.5, -5.83)">
-                <circle fill="#cce6ee" transform="translate(31.5 5.83)" r="15.167" cy="15.167" cx="15.167" />
-              </g>
+              <circle fill="#cce6ee" r="15.167" cy="15.167" cx="15.167" />
               <g fill="#a6cad0" transform="translate(-24.415 -1.009)">
                 <circle transform="translate(43.009 4.496)" r={2} cy={2} cx={2} />
                 <circle transform="translate(39.366 17.952)" r={2} cy={2} cx={2} />
